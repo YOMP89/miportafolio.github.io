@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Desarrollador Web</title>
+    <link rel="icon" type="image/png" href="MiLogo.png">
+    </head>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            margin-bottom: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        header p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: slideUp 1s ease-out;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #a777e3;
+        }
+
+        /* Secciones */
+        section {
+            padding: 60px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        /* Proyectos */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .project {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+        }
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .project-info {
+            padding: 20px;
+        }
+        .project-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .project-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .project-link {
+            display: inline-block;
+            background-color: #6e8efb;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .project-link:hover {
+            background-color: #a777e3;
+        }
+
+        /* Sobre mí */
+        .about-me {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-me img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .about-me-content {
+            flex: 1;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .skill {
+            background-color: #6e8efb;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Contacto */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            height: 150px;
+        }
+        .submit-btn {
+            background-color: #6e8efb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #a777e3;
+        }
+        .download-cv {
+            display: inline-block;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .download-cv:hover {
+            background-color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .about-me {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-me img {
+                width: 200px;
+                height: 200px;
+            }
+
+            /* Estilos generales */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Estilos para pantallas más pequeñas (teléfonos) */
+    @media (max-width: 767px) {
+        .container {
+            padding: 0 10px;
+        }
+
+        /* Ajustes de estilo específicos para elementos en pantallas pequeñas */
+        /* Por ejemplo, reducir el tamaño de la fuente y la altura de las imágenes */
+    }
+
+    /* Estilos para pantallas más grandes (escritorio) */
+    @media (min-width: 768px) {
+        /* Ajustes de estilo específicos para elementos en pantallas grandes */
+        /* Por ejemplo, aumentar el tamaño de la fuente y la altura de las imágenes */
+    }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Omar Parada</h1>
+            <p>Desarrollador Web | Creando experiencias digitales impactantes</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="proyectos">
+            <div class="container">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <div class="projects">
+                    <!-- Repite este bloque 8 veces para los 8 proyectos -->
+                    <div class="project">
+                        <img src="imagenes/6.jpg" alt="Proyecto 1">
+                        <div class="project-info">
+                            <h3 class="project-title">Colegio Franciscano del Virrey Solís, Bogotá</h3>
+                            <p class="project-description">Actualización de la página web del Colegio Virrey Solís de Bogotá, mejorando la experiencia del usuario con un diseño moderno y responsivo. </p>
+                            <a target="_blank" href="https://virreysolis.edu.co/" class="project-link">Ver página</a>
+                        </div>
+                    </div>
+                    <!-- Fin del bloque de proyecto -->
+
+                    <div class="project">
+                        <img src="imagenes/4.jpg" alt="Proyecto 1">
+                        <div class="project-info">
+                            <h3 class="project-title">Depomint Store</h3>
+                            <p class="project-description">Elaboración de una tienda en línea Depomint Store, creada en Shopify, proporcionando una experiencia de compra moderna y eficiente.El sitio cuenta con un diseño intuitivo y atractivo</p>
+                            <a target="_blank" href="https://www.depomint.com/" class="project-link">Ver Página</a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="project">
+                        <img src="imagenes/5.jpg" alt="Proyecto 1">
+                        <div class="project-info">
+                            <h3 class="project-title">Colegio Católico de la Sabana</h3>
+                            <p class="project-description">Actualización de la página web del Colegio Católico de la Sabana, enfocada en mejorar la experiencia del usuario con un diseño moderno y responsivo. </p>
+                            <a target="_blank" href="https://www.colegiocatolicodelasabana.edu.co/" class="project-link">Ver Página</a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="project">
+                        <img src="imagenes/3.jpg" alt="Proyecto 1">
+                        <div class="project-info">
+                            <h3 class="project-title">Comunidad Franciscana - Colombia</h3>
+                            <p class="project-description">Desarrollo y actualización de la página web de la Comunidad Franciscana de Colombia, creando un espacio digital acogedor y funcional. El sitio presenta un diseño intuitivo y moderno</p>
+                            <a target="_blank" href="https://franciscanos.co/" class="project-link">Ver Página</a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="project">
+                        <img src="imagenes/1.jpg" alt="Proyecto 1">
+                        <div class="project-info">
+                            <h3 class="project-title">Levántate y Caminemos Juntos</h3>
+                            <p class="project-description">Creación de la página web «Levántate y Caminemos Juntos» para un religioso franciscano que ofrece conferencias y mensajes motivacionales a través de sus redes sociales. </p>
+                            <a target="_blank" href="https://levantateycaminemosjuntos.com/" class="project-link">Ver Página</a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="project">
+                        <img src="imagenes/7.jpg" alt="Proyecto 1">
+                        <div class="project-info">
+                            <h3 class="project-title">Depotrekker</h3>
+                            <p class="project-description">Creación de la página web Depotrekker, especializada en la elaboración de invitaciones de matrimonio y la organización de eventos nupciales. El sitio presenta un diseño elegante e intuitivo, optimizado para dispositivos móviles y motores de búsqueda.</p>
+                            <a target="_blank" href="https://depotrekker.com/" class="project-link">Ver Página</a>
+                        </div>
+                    </div>
+
+                    
+                    <div class="project">
+                        <img src="imagenes/2.jpg" alt="Proyecto 1" width="400" height="100">
+                        <div class="project-info">
+                            <h3 class="project-title">
+                                Colegio Franciscano de Pío XII</h3>
+                            <p class="project-description">Desarrollo y actualización de la página web del Colegio Franciscano Pío XII en Cali, creando un espacio digital acogedor y funcional para estudiantes, padres y la comunidad educativa.</p>
+                            <a href="https://pioxii.edu.co/" class="project-link" target="_blank">Ver Página</a>
+                        </div>
+                    </div>
+
+                    
+                         
+
+                    <!-- Repite para los otros 7 proyectos -->
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-mi">
+            <div class="container">
+                <h2 class="section-title">Sobre Mí</h2>
+                <div class="about-me">
+                    <img src="foto-perfil.jpg" alt="Juan Desarrollador">
+                    <div class="about-me-content">
+                        <p>Soy un desarrollador web apasionado con más de 8 años de experiencia en el manejo de ecommerce, especialmente en plataformas como Shopify. Mi enfoque se centra en combinar un diseño atractivo con funcionalidad robusta, ofreciendo soluciones digitales avanzadas que no solo destacan en apariencia, sino que también proporcionan experiencias de usuario excepcionales.</p><br>
+                        <p>A lo largo de mi carrera, he trabajado en diversos proyectos, desde la creación de tiendas online hasta la implementación de soluciones personalizadas en WordPress y otras plataformas, siempre comprometido con el aprendizaje continuo y la aplicación de las últimas tecnologías y mejores prácticas en el desarrollo web.</p>
+                        <div class="skills">
+                            <span class="skill">HTML5</span>
+                            <span class="skill">CSS3</span>
+                            <span class="skill">JavaScript</span>
+                            <span class="skill">React</span>
+                            <span class="skill">Python</span>
+                            <span class="skill">Node.js</span>
+                            <span class="skill">MongoDB</span>
+                            <span class="skill">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="container">
+                <h2 class="section-title">Contacto</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+                <a href="https://drive.google.com/file/d/1Qv0ozlLEqa8CvR6A2NnLGUKUDbyWIFAJ/view?usp=sharing" class="download-cv">Descargar CV</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Omar Parada. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animación de aparición para los proyectos
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeIn 1s ease-out forwards`;
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project').forEach(project => {
+            observer.observe(project);
+        });
+
+        // Manejo del formulario de contacto
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica para enviar el formulario
+            alert('Gracias por tu mensaje. Te contactaremos pronto!');
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Animación de aparición para los proyectos
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = `fadeIn 1s ease-out forwards`;
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project').forEach(project => {
+        observer.observe(project);
+    });
+
+    // Manejo del formulario de contacto
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Aquí iría la lógica para enviar el formulario
+        alert('Gracias por tu mensaje. Te contactaremos pronto!');
+        this.reset();
+    });
+    </script>
+</body>
+</html>
